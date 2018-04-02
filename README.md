@@ -1,4 +1,5 @@
 # docproxy
+![doctor](http://www.free-icons-download.net/images/doctor-icon-61857.png)
 A simple proxy for Docker for exposing services dynamically with Let's Encrypt
 support.
 
