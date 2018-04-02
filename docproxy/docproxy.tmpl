@@ -1,0 +1,31 @@
+#!/bin/bash
+
+cat <<END
+# GENERATED CONFIG
+defaults
+   mode http
+   timeout connect 5000ms
+   timeout client 50000ms
+   timeout server 50000ms
+
+frontend http
+   bind *:80
+   redirect scheme https if !{ path_beg -i /.well-known } !{ ssl_fc }
+   acl getssl path_beg -i /.well-known
+   use_backend getssl-server if getssl
+   
+$FRONT
+
+frontend www-https
+   bind *:443 ssl crt /cert/server.pem
+   reqadd X-Forwarded-Proto:\ https
+
+$FRONT
+
+backend getssl-server
+   server server localhost:8000
+
+$BACK
+
+END
+
