@@ -25,11 +25,11 @@ Basically:
   ```
     labels:
       - "api"
-      - "subdomain=webaoke"
+      - "subdomain=myapp"
       - "port=80"
   ```
   Where 'api' tells docproxy to expose this api.  'subdomain' indicates the
-subdomain that the service will be present at 'mysubdomain.mydomain.doc' for
+subdomain that the service will be present at 'myapp.mydomain.com' for
 instance.  And 'port' is the EXPOSEd port for the container to route traffic
 to.
 
