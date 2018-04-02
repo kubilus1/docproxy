@@ -36,9 +36,9 @@ to.
 * Add the external network to your docker compose: 
   ```
   networks:
-    traefik:
+    docproxy:
       external:
-        name: getssldocker_reverseproxy 
+        name: docproxy_reverseproxy 
    ```
 
 * Expose the following ENV vars to docproxy:
