@@ -16,11 +16,15 @@ frontend http
    
 $FRONT
 
+$DEFAULT
+
 frontend www-https
    bind *:443 ssl crt /cert/server.pem
    reqadd X-Forwarded-Proto:\ https
 
 $FRONT
+
+$DEFAULT
 
 backend getssl-server
    server server localhost:8000
