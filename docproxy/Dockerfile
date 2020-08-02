@@ -1,5 +1,7 @@
 FROM ubuntu:latest
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get -y install cron python sed openssl curl dnsutils haproxy docker.io
 
 # Add crontab file in the cron directory
