@@ -1,5 +1,13 @@
 #!/bin/bash
 
+setupcerts() {
+    # Begin cert creation process
+    getssl -c $SERVER -w $WORKDIR
+    service haproxy start
+    getssl -a -w $WORKDIR
+    echo "Done with GETSSL init"
+}
+
 buildconf() {
     echo "Rebuilding conf"
     FRONT=$(docker ps --format '\n   acl {{.Names}}-api  hdr_beg(host) -i {{.Label "subdomain"}}.\n   use_backend {{.Names}}-backend if {{.Names}}-api\n' --filter "label=api")
@@ -18,5 +26,6 @@ watchdocker() {
     done < /dev/stdin
 }
 
+setupcerts
 buildconf
 docker events --filter event=start --filter event=stop --filter label=api | watchdocker

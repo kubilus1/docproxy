@@ -9,12 +9,7 @@ sed -e 's|##SANS##|'"$SANS"'|g' /getssl/getssl.tmpl > $WORKDIR/$SERVER/getssl.cf
 
 # Setup ACME challenge server
 cd /challenge && python -m SimpleHTTPServer &
-
-# Begin cert creation process
-getssl -c $SERVER -w $WORKDIR
-service haproxy start
-getssl -a -w $WORKDIR
-echo "Done with GETSSL init"
+sleep 2
 
 # Use cron to keep things up-to-date
 cron
